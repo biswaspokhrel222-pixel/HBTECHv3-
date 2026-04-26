@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>HBTECHv3</title>
+    <script>
+        function addToCart(product) {
+            // Collect customer email from input field
+            const customerEmail = document.getElementById('customer-email').value;
+            // Mockup API call to send email notification
+            fetch('https://your-backend-api/send-email', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: customerEmail,
+                    product: product,
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show confirmation popup
+                alert('Email sent to ' + customerEmail + ' for product: ' + product);
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class='cart'>
+        <h2>Your Cart</h2>
+        <!-- Customer email input field -->
+        <input type='email' id='customer-email' placeholder='biswaspokhrel222@gmail.com' required />
+        <button onclick='addToCart("Sample Product")'>Add to Cart</button>
+        <!-- Existing cart items here -->
+    </div>
+</body>
+</html>
